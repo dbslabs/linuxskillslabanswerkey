@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompTIA A+ Core 2: Linux Skills Lab - Instructor Answer Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px auto;
+            max-width: 800px;
+            background-color: #ffffff;
+            color: #333333;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            color: #111111;
+        }
+        /* Style focus indicator for contenteditable blocks */
+        [contenteditable="true"]:focus {
+            outline: 2px solid #005fcc;
+            outline-offset: 4px;
+            background-color: #f4f8fb;
+        }
+        ul, ol {
+            margin-bottom: 20px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #dddddd;
+            margin: 30px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 12px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 contenteditable="true">CompTIA A+ Core 2: Linux Skills Lab</h1>
+    <p contenteditable="true"><strong>Instructor Answer Key</strong></p>
+    <p contenteditable="true">In every sample, student stands for the student's own user name. Output will vary by server, Ubuntu release, date, and file sizes, so grade on whether the output shows the correct command was run, not on exact matches[cite: 17].</p>
+    <hr>
+
+    <h2 contenteditable="true">Instructor Notes</h2>
+    <ul>
+        <li contenteditable="true">Check before class that vim is installed. Minimal Ubuntu servers often include only vi (vim-tiny). Every vim step in Exercise 4 works in vim-tiny except extra features, but the full package is better[cite: 17].</li>
+        <li contenteditable="true">pico may not exist on your server. If students report "command not found", accept that as evidence and have them use nano[cite: 17].</li>
+        <li contenteditable="true">man pages are missing on some minimal installs. If man fsck fails, accept an answer based on fsck -h or a web lookup[cite: 17].</li>
+        <li contenteditable="true">Exercise 9 needs the e2fsprogs package (installed by default). If mkfs.ext4 is not found, try /sbin/mkfs.ext4. The image file uses 10 MB, so check any disk quotas[cite: 17].</li>
+        <li contenteditable="true">To detect copied work, look for each student's own user name in paths such as /home/student/lab and in the prompt[cite: 17].</li>
+        <li contenteditable="true">Suggested scoring: 10 points per exercise, 100 total. Give about 6 points for correct commands and output, and about 4 points for the written explanation[cite: 17].</li>
+    </ul>
+    <hr>
+
+    <h2 contenteditable="true">Coverage Map</h2>
+    <p contenteditable="true">The table below lists each required command or feature and the exercises that practice it[cite: 17].</p>
+    <table>
+        <tr>
+            <th contenteditable="true">Command or feature</th>
+            <th contenteditable="true">Exercises</th>
+        </tr>
+        <tr>
+            <td contenteditable="true">pwd, cd, ls</td>
+            <td contenteditable="true">1, 5, 6</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">nano, pico</td>
+            <td contenteditable="true">2, 3</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">vi, vim</td>
+            <td contenteditable="true">3, 4</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">cat</td>
+            <td contenteditable="true">2, 3, 4, 5, 10</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">cp, mv, rm</td>
+            <td contenteditable="true">5, 6</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">find, grep</td>
+            <td contenteditable="true">7, 10</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">df, du</td>
+            <td contenteditable="true">8, 9, 10</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">fsck</td>
+            <td contenteditable="true">9</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">Pipes</td>
+            <td contenteditable="true">7, 8, 10</td>
+        </tr>
+        <tr>
+            <td contenteditable="true">Escaping with backslash, single quotes, and double quotes</td>
+            <td contenteditable="true">10</td>
+        </tr>
+    </table>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 1 Answer Key: Navigation Basics</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true"><code>pwd</code> shows <code>/home/student</code>[cite: 17].</li>
+        <li contenteditable="true"><code>ls -la ~/lab</code> lists ., .., backup, docs, and logs. Directories show a leading d in the permissions[cite: 17].</li>
+        <li contenteditable="true"><code>ls -la</code> shows hidden files (names starting with a dot), permissions, owner, group, size, and date. <code>ls -l</code> shows the long format but hides dot files[cite: 17].</li>
+        <li contenteditable="true"><strong>Model answer:</strong> <code>cd -</code> returns to the previous directory you were in and prints its path[cite: 17].</li>
+    </ul>
+    <h3 contenteditable="true">Sample Output</h3>
+    <p contenteditable="true">Sample output (values vary)[cite: 17]:</p>
+    <pre contenteditable="true">total 20
+drwxr-xr-x 5 student student 4096 Oct  7 10:15 .
+drwxr-x--- 8 student student 4096 Oct  7 10:14 ..
+drwxr-xr-x 2 student student 4096 Oct  7 10:15 backup
+drwxr-xr-x 2 student student 4096 Oct  7 10:15 docs
+drwxr-xr-x 2 student student 4096 Oct  7 10:15 logs</pre>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 2 Answer Key: nano</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true">The <code>cat</code> output shows six lines: the name, the date, three commands, and the added sixth line[cite: 17].</li>
+        <li contenteditable="true">Save and exit keystrokes: <code>Ctrl+O</code>, <code>Enter</code> to confirm the file name, then <code>Ctrl+X</code>[cite: 17].</li>
+        <li contenteditable="true">Accept students who describe the nano footer prompts (for example "^O Write Out" and "^X Exit") in their own words[cite: 17].</li>
+    </ul>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 3 Answer Key: pico and vi</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true"><code>pico_test.txt</code> contains two lines. <code>vi_test.txt</code> contains three lines about why they are taking A+[cite: 17].</li>
+        <li contenteditable="true"><code>:wq</code> writes (saves) and quits[cite: 17].</li>
+        <li contenteditable="true"><code>:q</code> quits, but vi refuses if there are unsaved changes[cite: 17].</li>
+        <li contenteditable="true"><code>:q!</code> quits and discards unsaved changes[cite: 17].</li>
+        <li contenteditable="true">The <code>:q!</code> step should not alter the file, so the <code>cat</code> output must still show the three saved lines[cite: 17].</li>
+    </ul>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 4 Answer Key: vim</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true">Students' final text varies because they choose which line to delete or copy. The required evidence is that banana no longer appears and mango does[cite: 17].</li>
+        <li contenteditable="true">Expected command list with descriptions: <code>i</code> enters insert mode; <code>Esc</code> returns to normal mode; <code>dd</code> deletes the current line; <code>yy</code> copies (yanks) the current line; <code>p</code> pastes below the cursor; <code>u</code> undoes the last change; <code>/banana</code> searches forward (<code>n</code> goes to the next match); <code>:%s/banana/mango/g</code> replaces every match in the file; <code>:wq</code> saves and quits[cite: 17].</li>
+        <li contenteditable="true">Example result: the cursor starts on the last line, so <code>dd</code> removes the second banana, <code>yy</code> and <code>p</code> duplicate cherry, and <code>u</code> undoes the paste[cite: 17].</li>
+    </ul>
+    <h3 contenteditable="true">Sample Output</h3>
+    <p contenteditable="true">Sample final cat output (one possible result)[cite: 17]:</p>
+    <pre contenteditable="true">apple
+mango
+cherry</pre>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 5 Answer Key: Viewing and Copying Files</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true"><code>osinfo.txt</code> shows a PRETTY_NAME line, for example Ubuntu 24.04 LTS. Accept whichever release your server runs[cite: 17].</li>
+        <li contenteditable="true"><code>cp -r</code> is needed to copy a directory. Without <code>-r</code>, cp prints "omitting directory"[cite: 17].</li>
+    </ul>
+    <h3 contenteditable="true">Sample Output</h3>
+    <p contenteditable="true">Sample output (values vary)[cite: 17]:</p>
+    <pre contenteditable="true">/home/student/lab:
+backup  docs  logs
+ 
+/home/student/lab/backup:
+docs
+ 
+/home/student/lab/backup/docs:
+notes.txt  osinfo.txt  pico_test.txt  vi_test.txt  vim_test.txt
+ 
+/home/student/lab/docs:
+notes.txt  osinfo.txt  pico_test.txt  vi_test.txt  vim_test.txt
+ 
+/home/student/lab/logs:</pre>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 6 Answer Key: Moving, Renaming, and Deleting</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true">The "before" listing matches the Exercise 5 sample. In the "after" listing, docs holds notes.txt, os_details.txt, and vim_test.txt; logs holds pico_test.txt; and backup is unchanged[cite: 17].</li>
+        <li contenteditable="true"><code>rm -i</code> prompts like "rm: remove regular file '/home/student/lab/docs/notes_copy.txt'?" and the file is deleted after y[cite: 17].</li>
+        <li contenteditable="true"><code>rmdir</code> works only on empty directories. <code>rm -r</code> removes a directory and its contents[cite: 17].</li>
+        <li contenteditable="true"><strong>Model answer for <code>rm -rf</code>:</strong> it recursively deletes everything without asking, ignores errors, and has no recycle bin, so a typo or wrong path (for example a stray space or a wrong variable) can permanently destroy important data. There is no undo[cite: 17].</li>
+    </ul>
+    <h3 contenteditable="true">Sample Output</h3>
+    <p contenteditable="true">Sample "after" listing[cite: 17]:</p>
+    <pre contenteditable="true">/home/student/lab:
+backup  docs  logs
+ 
+/home/student/lab/backup:
+docs
+ 
+/home/student/lab/backup/docs:
+notes.txt  osinfo.txt  pico_test.txt  vi_test.txt  vim_test.txt
+ 
+/home/student/lab/docs:
+notes.txt  os_details.txt  vim_test.txt
+ 
+/home/student/lab/logs:
+pico_test.txt</pre>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 7 Answer Key: find and grep</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true"><code>find ~/lab -name "*.txt"</code> lists every text file under the lab, including those in backup[cite: 17].</li>
+        <li contenteditable="true"><code>2&gt;/dev/null</code> discards permission-denied errors. <code>head -20</code> shows only the first 20 lines[cite: 17].</li>
+        <li contenteditable="true"><code>grep "Ubuntu"</code> prints only lines containing that exact capitalization, such as the NAME and PRETTY_NAME lines[cite: 17].</li>
+        <li contenteditable="true"><code>-i</code> ignores case, so lines with "ubuntu" in lower case also match (for example ID=ubuntu)[cite: 17].</li>
+        <li contenteditable="true"><code>-n</code> shows the line number before each match[cite: 17].</li>
+        <li contenteditable="true"><code>-r</code> searches recursively through a directory. <code>grep -r "mango" ~/lab</code> should show two matches: docs/vim_test.txt and backup/docs/vim_test.txt[cite: 17].</li>
+        <li contenteditable="true"><code>-v</code> inverts the match and shows lines that do not contain the pattern. Most Ubuntu os-release files have no # characters, so the whole file usually prints. That is correct[cite: 17].</li>
+    </ul>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 8 Answer Key: df and du</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true">The home directory is usually on the filesystem mounted at / (for example /dev/sda1 or /dev/mapper/ubuntu--vg-ubuntu--lv). Accept another mount point if the server has a separate /home[cite: 17].</li>
+        <li contenteditable="true"><code>du -sh ~/lab</code> is small, typically a few dozen KB (for example 60K). Used space on / is much larger, usually gigabytes[cite: 17].</li>
+        <li contenteditable="true"><code>-h</code> means human-readable: sizes appear as K, M, and G instead of raw blocks[cite: 17].</li>
+        <li contenteditable="true"><code>df -i</code> shows inode usage (the count of files and directories), not byte usage[cite: 17].</li>
+    </ul>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 9 Answer Key: fsck</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true">Expected output shows the five passes, ending with a summary line. Version and numbers vary[cite: 17].</li>
+        <li contenteditable="true"><code>-y</code> answers yes to every repair prompt automatically. <code>-n</code> opens the filesystem read-only and answers no to every prompt, so nothing is changed[cite: 17].</li>
+        <li contenteditable="true"><code>practice.img</code> does not appear in <code>df -h</code> because it is a regular file that was never mounted[cite: 17].</li>
+        <li contenteditable="true"><strong>Model answer (why not mounted):</strong> a mounted filesystem is being changed while it is checked, and the kernel's cached data may not match the disk. fsck could "repair" good data and corrupt the filesystem[cite: 17].</li>
+        <li contenteditable="true"><strong>Model answer (when to run it):</strong> after a crash or power loss, disk errors, or boot failures. Unmount the filesystem first (or boot recovery mode or live media), then run it as root, for example <code>sudo fsck /dev/sdXN</code>[cite: 17].</li>
+    </ul>
+    <h3 contenteditable="true">Sample Output</h3>
+    <p contenteditable="true">Sample output (values vary)[cite: 17]:</p>
+    <pre contenteditable="true">e2fsck 1.47.0 (5-Feb-2023)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/home/student/lab/practice.img: 11/2560 inodes used (0.43%, ...)</pre>
+    <hr>
+
+    <h2 contenteditable="true">Exercise 10 Answer Key: Pipes and Escaping</h2>
+    <h3 contenteditable="true">Expected Results</h3>
+    <ul>
+        <li contenteditable="true"><strong>Part A:</strong> Counts and sizes vary. Each command should show output, and the final cat shows lines from df -h that contain /dev[cite: 17].</li>
+        <li contenteditable="true"><code>touch ~/lab/my\ file.txt</code> succeeds because the backslash escapes the space, so it becomes part of the file name instead of a separator[cite: 17].</li>
+        <li contenteditable="true"><code>touch "~/lab/my other file.txt"</code> fails with "No such file or directory". Inside quotes the shell does not expand ~, so it looks for a directory literally named ~. Correct versions: <code>touch "$HOME/lab/my other file.txt"</code> or <code>touch ~/lab/"my other file.txt"</code>[cite: 17].</li>
+        <li contenteditable="true"><code>echo "Hello $NAME"</code> prints Hello Student because double quotes allow variable expansion[cite: 17].</li>
+        <li contenteditable="true"><code>echo 'Hello $NAME'</code> prints Hello $NAME because single quotes keep every character literal[cite: 17].</li>
+        <li contenteditable="true"><code>echo "Cost is \$5"</code> prints Cost is $5. <code>echo "She said \"hello\""</code> prints She said "hello"[cite: 17].</li>
+        <li contenteditable="true"><code>find ~/lab -name "my*" | grep "file"</code> prints /home/student/lab/my file.txt. The second file was not created, which is the expected result[cite: 17].</li>
+        <li contenteditable="true"><strong>Model answer:</strong> single quotes treat everything literally; double quotes group text but still expand variables, $, backslash, and command substitution; a backslash escapes only the single character that follows it[cite: 17].</li>
+    </ul>
+
+</body>
+</html>
